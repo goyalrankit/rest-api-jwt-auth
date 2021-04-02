@@ -3,7 +3,7 @@ const app = express();
 const mongooose = require('mongoose');
 const dotenv = require('dotenv');
 // Importing Routes
-const authRoute = require('./routes/auth');
+const registerRoute = require('./routes/register');
 
 
 
@@ -25,7 +25,7 @@ mongooose.connect(
 app.use(express.json());
 
 // Route Middleware
-app.use('/api/user/',authRoute);
+app.use('/api/user/',registerRoute);
 
 
 

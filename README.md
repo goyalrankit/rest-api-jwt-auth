@@ -29,9 +29,9 @@
     cpassword match
 #
     Validation 2 using Joi 
-    Moved to separate file
-
+    Moved to separate fileQ
+    Duplicate Email validation 
 #   
-    Same Email validation -> pending
+    
 #
     Hash Password -> pending

@@ -1,7 +1,7 @@
 const express = require('express');
 const routes = express.Router();
-const User = require('./../model/UserSchema');
-const { validationRegister } = require('./../validations/validate');
+const User = require('../model/UserSchema');
+const { validationRegister } = require('../validations/validate');
 
 
 // Register User
@@ -19,29 +19,33 @@ routes.post('/register', async (req,res)=>{
     }
 
 
-    // if( !name |! email |! password |!cpassword)
-    // {
-    //     return res.status(422).json( {error:'One or more field are empty'});
-    // }
-
+    // Create a new user 
     try {
-    const registerUser = await new User({
-        name: name,
-        email: email,
-        password: password,
-        cpassword: cpassword,
-    });
+        const registerUser = await new User({
+            name: name,
+            email: email,
+            password: password,
+            cpassword: cpassword,
+        });
 
+
+        // Email already exist
+        const emailExist = await User.findOne({email:email});
+        if(emailExist){
+        return res.status(400).send('Email already Exist, Try registering with new Email');
+        }
+
+        // Saving user in Database
         if (registerUser) {
             registerUser.save();
             res.send(registerUser);
             res.status(200).json({ message: "User Registered Succesfully" });
-        } else {
+           } else {
             return res.status(422).json({ error: "Not Registered" });
+            }
+     } catch (error){ 
+            res.status(400).send(console.log(error));
         }
-    } catch (error) { res.status(400).send(console.log(error))}
-
-
 })
 
 // // Login User
