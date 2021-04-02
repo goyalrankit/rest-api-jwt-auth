@@ -1,28 +1,7 @@
 const express = require('express');
 const routes = express.Router();
 const User = require('./../model/UserSchema');
-
-// Validation dependency
-const Joi = require('@hapi/joi');
-
-// Validation Schema
-const schema = Joi.object({
-    name: Joi.string()
-        .min(3)
-        .max(30)
-        .required(),
-    
-    email: Joi.string()
-        .required()    
-        .email({ minDomainSegments: 2, tlds: { allow: ['com', 'net'] } }),
-
-    password: Joi.string()
-        .min(6)
-        .pattern(new RegExp('^[a-zA-Z0-9]{3,30}$')),
-
-    cpassword: Joi.ref('password')
-
-});
+const { validationRegister } = require('./../validations/validate');
 
 
 // Register User
@@ -31,9 +10,9 @@ routes.post('/register', async (req,res)=>{
 
     const { name , email , password,cpassword } = req.body;
 
+    // Validation check using JOI
     // This return the JSon object, so just getting error from JSON 
-    const {error} = schema.validate(req.body)
-
+    const {error} = validationRegister(req.body);
     if(error)
     {
         return res.status(422).send( error.details[0].message);

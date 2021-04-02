@@ -27,3 +27,11 @@
     Email    type email check
     Password regular-expression
     cpassword match
+#
+    Validation 2 using Joi 
+    Moved to separate file
+
+#   
+    Same Email validation -> pending
+#
+    Hash Password -> pending
