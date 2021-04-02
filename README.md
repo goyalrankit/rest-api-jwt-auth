@@ -11,6 +11,8 @@
     Added the Register Route
     Added the Login Route
 # 
+    Securing Password and connection using Dotenv
+    Connecting to Mongo Db
     
 
 # 
