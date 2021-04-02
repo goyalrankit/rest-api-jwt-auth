@@ -13,8 +13,17 @@
 # 
     Securing Password and connection using Dotenv
     Connecting to Mongo Db
-    
 
 # 
+    Implemented the User Schema
+    Name:
+    Email:
+    Password:
+    Date:
 
-# 
+#   
+    Validation using Joi
+    Name     type name check
+    Email    type email check
+    Password regular-expression
+    cpassword match
