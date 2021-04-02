@@ -4,5 +4,15 @@
     How to run the Project?
     cd rest-api-jwt-auth
     nodemon index.js
+
+# 
+    Server Setup runs at port 5000
+# 
+    Added the Register Route
+    Added the Login Route
+# 
     
-# Server Setup runs at port 5000
+
+# 
+
+# 
