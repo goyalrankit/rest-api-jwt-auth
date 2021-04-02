@@ -38,3 +38,6 @@
     Email and hash password check
     
 #
+    Creating and assigning JWT Tokens 
+    Using Middleware
+    Authorization to Private Routes

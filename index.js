@@ -6,6 +6,7 @@ const dotenv = require('dotenv');
 // Importing Routes
 const registerRoute = require('./routes/register');
 const loginRoute = require('./routes/login');
+const profileRoute = require('./routes/profile');
 
 
 // Helps to load the Env files
@@ -27,10 +28,13 @@ app.use(express.json());
 
 
 // Route Middleware 
+
 // Register
 app.use('/api/user/',registerRoute);
 // Login
 app.use('/api/user/',loginRoute);
+// Profile
+app.use('/api/user/',profileRoute);
 
 
 // Server Call
