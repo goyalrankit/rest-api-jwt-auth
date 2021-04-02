@@ -13,6 +13,16 @@ const schema = moongoose.Schema(
             required:true,
             unique:true
         },
+        phone:{
+            type:String,
+            min:10,
+            max:11,
+            required:true,
+        },
+        gender:{
+            type:String,
+            required:true
+        },
         password:{
             type:String,
             required:true,
@@ -22,6 +32,12 @@ const schema = moongoose.Schema(
             type:String,
             required:true,
             min:6
+        },
+        question:{
+            type:String,
+            required:true,
+            min:2,
+            max:20
         },
         createdDate:{
             type:Date,

@@ -8,7 +8,7 @@ const bcrypt = require('bcryptjs');
 
 routes.post('/register', async (req,res)=>{
 
-    const { name , email , password,cpassword } = req.body;
+    const { name , email , phone, gender, password, cpassword, question } = req.body;
 
     // Validation check using JOI
     // This return the JSon object, so just getting error from JSON 
@@ -31,14 +31,15 @@ routes.post('/register', async (req,res)=>{
             const hashedPassword = await bcrypt.hash(password,12);
             const hashedConfirmPassword = await bcrypt.hash(cpassword,12);
 
-            console.log(hashedPassword);
-            console.log(hashedConfirmPassword);
-
             const registerUser = await new User({
-                name: name,
-                email: email,
-                password: hashedPassword,
+                name     : name,
+                email    : email,
+                phone    : phone,
+                gender   : gender,
+                password : hashedPassword,
                 cpassword: hashedConfirmPassword,
+                question : question
+
             });
     
         // Saving user in Database

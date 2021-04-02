@@ -6,19 +6,32 @@ const validationRegister = reqBody => {
 
     const schema = Joi.object({
         name: Joi.string()
-            .min(3)
-            .max(30)
-            .required(),
+                 .min(3)
+                 .max(30)
+                 .required(),
         
         email: Joi.string()
-            .required()    
-            .email({ minDomainSegments: 2, tlds: { allow: ['com', 'net','gov','edu'] } }),
+                  .required()    
+                  .email({ minDomainSegments: 2, tlds: { allow: ['com', 'net','gov','edu'] } }),
+         
+        phone: Joi.string()
+                  .min(10)
+                  .max(11)
+                  .required(),    
+        
+        gender: Joi.string()
+                   .required(),    
     
         password: Joi.string()
-            .min(6)
-            .pattern(new RegExp('^[a-zA-Z0-9]{3,30}$')),
+                     .min(6)
+                     .pattern(new RegExp('^[a-zA-Z0-9]{3,30}$')),
     
-        cpassword: Joi.ref('password')    
+        cpassword: Joi.ref('password'),
+        
+        question: Joi.string()
+                     .min(3)
+                     .max(20)
+                     .required()   
     });  
     return schema.validate(reqBody);
 };

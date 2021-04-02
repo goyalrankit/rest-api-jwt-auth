@@ -21,14 +21,12 @@
     Password:
     Date:
 
-#   
-    Validation using Joi
+#   Validation 1 using Joi
     Name     type name check
     Email    type email check
     Password regular-expression
     cpassword match
-#
-    Validation->2 using Joi 
+#   Validation 2 using Joi
     Moved to separate files
     Duplicate Email validation 
     Hash Password 
@@ -41,3 +39,10 @@
     Creating and assigning JWT Tokens 
     Using Middleware
     Authorization to Private Routes
+
+#
+    Changed the Schema
+    Added field:
+    1)    Phone
+    2)   Gender
+    3)    Security Question
