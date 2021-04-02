@@ -28,10 +28,13 @@
     Password regular-expression
     cpassword match
 #
-    Validation 2 using Joi 
-    Moved to separate fileQ
+    Validation->2 using Joi 
+    Moved to separate files
     Duplicate Email validation 
+    Hash Password 
 #   
+    Login routing
+    Login verifiation 
+    Email and hash password check
     
 #
-    Hash Password -> pending
