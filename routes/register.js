@@ -2,7 +2,7 @@ const express = require('express');
 const routes = express.Router();
 const User = require('../model/UserSchema');
 const { validationRegister } = require('../validations/validate');
-
+const bcrypt = require('bcryptjs');
 
 // Register User
 
@@ -21,20 +21,26 @@ routes.post('/register', async (req,res)=>{
 
     // Create a new user 
     try {
-        const registerUser = await new User({
-            name: name,
-            email: email,
-            password: password,
-            cpassword: cpassword,
-        });
-
-
         // Email already exist
         const emailExist = await User.findOne({email:email});
         if(emailExist){
         return res.status(400).send('Email already Exist, Try registering with new Email');
         }
 
+        // Hash Password 
+            const hashedPassword = await bcrypt.hash(password,12);
+            const hashedConfirmPassword = await bcrypt.hash(cpassword,12);
+
+            console.log(hashedPassword);
+            console.log(hashedConfirmPassword);
+
+            const registerUser = await new User({
+                name: name,
+                email: email,
+                password: hashedPassword,
+                cpassword: hashedConfirmPassword,
+            });
+    
         // Saving user in Database
         if (registerUser) {
             registerUser.save();
@@ -46,12 +52,6 @@ routes.post('/register', async (req,res)=>{
      } catch (error){ 
             res.status(400).send(console.log(error));
         }
-})
-
-// // Login User
-// routes.post('/login',(req,res) => {
-//     res.send('Login');
-// })
-
+});
 
 module.exports = routes;

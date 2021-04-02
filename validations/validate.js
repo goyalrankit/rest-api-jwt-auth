@@ -23,7 +23,23 @@ const validationRegister = reqBody => {
     return schema.validate(reqBody);
 };
 
+// Validation Schema for Login
+const validationLogin = reqBody => {
+
+    const schema = Joi.object({      
+        email: Joi.string()
+            .required()    
+            .email({ minDomainSegments: 2, tlds: { allow: ['com', 'net','gov','edu'] } }),
+    
+        password: Joi.string()
+            .min(6)
+            .pattern(new RegExp('^[a-zA-Z0-9]{3,30}$'))
+    });  
+    return schema.validate(reqBody);
+};
+
 module.exports.validationRegister = validationRegister;
 
+module.exports.validationLogin = validationLogin;
 
 
