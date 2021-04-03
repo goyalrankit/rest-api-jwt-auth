@@ -38,7 +38,7 @@ try {
         if(!newToken){
             res.status(400).send('Something went wrong. Try again');
         }
-        return res.header('login-token',newToken).send(newToken);          
+        return res.header({'login-token':newToken}).send(newToken);          
     } catch (error) {
         res.status(400).send(console.log(error));
         }

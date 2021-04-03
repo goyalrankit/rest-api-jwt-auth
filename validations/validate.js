@@ -24,7 +24,7 @@ const validationRegister = reqBody => {
     
         password: Joi.string()
                      .min(6)
-                     .pattern(new RegExp('^[a-zA-Z0-9]{3,30}$')),
+                     .pattern(new RegExp('^[a-zA-Z0-9]{6,30}$')),
     
         cpassword: Joi.ref('password'),
         
@@ -46,7 +46,7 @@ const validationLogin = reqBody => {
     
         password: Joi.string()
             .min(6)
-            .pattern(new RegExp('^[a-zA-Z0-9]{3,30}$'))
+            .pattern(new RegExp('^[a-zA-Z0-9]{6,30}$'))
     });  
     return schema.validate(reqBody);
 };
