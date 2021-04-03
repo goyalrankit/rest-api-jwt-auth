@@ -43,6 +43,14 @@
 #
     Changed the Schema
     Added field:
-    1)    Phone
-    2)   Gender
-    3)    Security Question
+    1)  Phone
+    2)  Gender
+    3)  Security Question
+
+#   Reset Password 
+
+    Check user and security answer
+    Hash new password
+    Update New password in DB
+    Reset the Password
+    

@@ -14,8 +14,6 @@ try {
 
         const {email, password} = req.body;
 
-        console.log(email);
-
         // Validation check using JOI
         // This return the JSon object, so just getting error from JSON 
         const {error} = validationLogin(req.body);

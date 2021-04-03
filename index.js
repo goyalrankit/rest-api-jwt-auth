@@ -7,6 +7,7 @@ const dotenv = require('dotenv');
 const registerRoute = require('./routes/register');
 const loginRoute = require('./routes/login');
 const profileRoute = require('./routes/profile');
+const passwordRoute = require('./routes/resetPassword');
 
 
 // Helps to load the Env files
@@ -29,13 +30,13 @@ app.use(express.json());
 
 // Route Middleware 
 
-// Register
-app.use('/api/user/',registerRoute);
-// Login
-app.use('/api/user/',loginRoute);
-// Profile
-app.use('/api/user/',profileRoute);
+app.use('/api/user/',registerRoute);    // Register
 
+app.use('/api/user/',loginRoute);       // Login
+
+app.use('/api/user/',profileRoute);     // Profile
+
+app.use('/api/user/',passwordRoute);     // Reset Password
 
 // Server Call
 app.listen(5000, () =>{

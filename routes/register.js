@@ -10,6 +10,8 @@ routes.post('/register', async (req,res)=>{
 
     const { name , email , phone, gender, password, cpassword, question } = req.body;
 
+    console.log(req.body);
+
     // Validation check using JOI
     // This return the JSon object, so just getting error from JSON 
     const {error} = validationRegister(req.body);
@@ -22,7 +24,7 @@ routes.post('/register', async (req,res)=>{
     // Create a new user 
     try {
         // Email already exist
-        const emailExist = await User.findOne({email:email});
+        const emailExist = await User.findOne( {email:email} );
         if(emailExist){
         return res.status(400).send('Email already Exist, Try registering with new Email');
         }

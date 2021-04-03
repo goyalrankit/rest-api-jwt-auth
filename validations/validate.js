@@ -51,8 +51,28 @@ const validationLogin = reqBody => {
     return schema.validate(reqBody);
 };
 
+// Validation Schema for Reset Password
+const validationPasswordReset = reqBody => {
+
+    const schema = Joi.object({      
+        email: Joi.string()
+                  .required()    
+                  .email({ minDomainSegments: 2, tlds: { allow: ['com', 'net','gov','edu'] } }),
+    
+        question: Joi.string()
+                     .min(3)
+                     .required(),
+        
+        password: Joi.string()
+                     .min(6)
+                     .pattern(new RegExp('^[a-zA-Z0-9]{6,30}$'))             
+    });  
+    return schema.validate(reqBody);
+};
+
+
+
 module.exports.validationRegister = validationRegister;
-
 module.exports.validationLogin = validationLogin;
-
+module.exports.validationPasswordReset = validationPasswordReset;
 
