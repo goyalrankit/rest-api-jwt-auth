@@ -29,9 +29,13 @@ const validationRegister = reqBody => {
         cpassword: Joi.ref('password'),
         
         question: Joi.string()
+                     .max(50)
+                     .required(),
+        
+        answer  : Joi.string()
                      .min(3)
                      .max(20)
-                     .required()   
+                     .required()
     });  
     return schema.validate(reqBody);
 };
@@ -60,9 +64,14 @@ const validationPasswordReset = reqBody => {
                   .email({ minDomainSegments: 2, tlds: { allow: ['com', 'net','gov','edu'] } }),
     
         question: Joi.string()
-                     .min(3)
-                     .required(),
-        
+                  .max(50)
+                  .required(),
+     
+        answer  : Joi.string()
+                  .min(3)
+                  .max(20)
+                  .required(),
+     
         password: Joi.string()
                      .min(6)
                      .pattern(new RegExp('^[a-zA-Z0-9]{6,30}$'))             

@@ -8,7 +8,7 @@ const bcrypt = require('bcryptjs');
 
 routes.post('/register', async (req,res)=>{
 
-    const { name , email , phone, gender, password, cpassword, question } = req.body;
+    const { name , email , phone, gender, password, cpassword, question, answer } = req.body;
 
     console.log(req.body);
 
@@ -40,8 +40,8 @@ routes.post('/register', async (req,res)=>{
                 gender   : gender,
                 password : hashedPassword,
                 cpassword: hashedConfirmPassword,
-                question : question
-
+                question : question,
+                answer   : answer
             });
     
         // Saving user in Database

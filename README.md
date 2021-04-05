@@ -40,17 +40,17 @@
     Using Middleware
     Authorization to Private Routes
 
-#
-    Changed the Schema
+#   Changed the Schema
     Added field:
     1)  Phone
     2)  Gender
     3)  Security Question
+    4)  Security Answer
 
 #   Reset Password 
-
     Check user and security answer
     Hash new password
     Update New password in DB
     Reset the Password
     
+#    Update Profile

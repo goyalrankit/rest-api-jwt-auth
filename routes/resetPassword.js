@@ -6,7 +6,7 @@ const bcrypt = require('bcryptjs');
 
 routes.post('/reset-password', async ( req, res ) =>{
     
-    const { email, question, password } =  req.body;
+    const { email, question,answer ,password } =  req.body;
   
     // Validation
     const {error} = validationPasswordReset(req.body);
@@ -23,7 +23,7 @@ routes.post('/reset-password', async ( req, res ) =>{
         }
 
         // Matching the Security Answer
-        if( question === userDetails.question)
+        if( question === userDetails.question && answer === userDetails.answer)
         {
             // Hash the New password
             const hashedPassword = await bcrypt.hash(password,12);
@@ -34,7 +34,8 @@ routes.post('/reset-password', async ( req, res ) =>{
             userDetails.gender   = userDetails.gender,
             userDetails.password = hashedPassword,
             userDetails.cpassword= hashedPassword,
-            userDetails.question = question
+            userDetails.question = question,
+            userDetails.answer   = answer
 
             res.status(200).send('Password is updated. Login with new password');
             await userDetails.save();       

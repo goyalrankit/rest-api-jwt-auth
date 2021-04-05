@@ -36,6 +36,10 @@ const schema = moongoose.Schema(
         question:{
             type:String,
             required:true,
+        },
+        answer:{
+            type:String,
+            required:true,
             min:2,
             max:20
         },

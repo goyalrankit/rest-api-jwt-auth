@@ -30,13 +30,13 @@ app.use(express.json());
 
 // Route Middleware 
 
-app.use('/api/user/',registerRoute);    // Register
+app.use('/restaurant/user/',registerRoute);    // Register
 
-app.use('/api/user/',loginRoute);       // Login
+app.use('/restaurant/user/',loginRoute);       // Login
 
-app.use('/api/user/',profileRoute);     // Profile
+app.use('/restaurant/user/',profileRoute);     // Profile
 
-app.use('/api/user/',passwordRoute);     // Reset Password
+app.use('/restaurant/user/',passwordRoute);     // Reset Password
 
 // Server Call
 app.listen(5000, () =>{
