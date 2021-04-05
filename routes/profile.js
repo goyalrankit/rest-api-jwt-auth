@@ -6,10 +6,8 @@ const middle = require('./../middleware/verifyToken');
 
 routes.get('/profile',middle,(req,res) =>
 {
-        res.status(200).json( {
-            "name":"Name",
-            "hello":"nsjnjs"
-        });
+    // Gets the User Id and from that user Id we can get info
+    res.send(req.user);
 })
 
 module.exports = routes;
