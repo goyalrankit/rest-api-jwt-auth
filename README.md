@@ -54,3 +54,11 @@
     Reset the Password
     
 #    Update Profile
+
+    Edit Profile
+    Update field in Database
+
+#   Schema Changed
+    Added Bio
+    Added Address
+     
