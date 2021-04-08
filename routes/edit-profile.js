@@ -41,8 +41,13 @@ routes.post('/edit-profile',middle, async (req,res) =>{
                             
                                 // Saving updated user in Database
 
-                                userDetails.save();
-                                    res.status(200).send( "Profile updated Succesfully" );
+                                try {
+                                    userDetails.save();
+                                  return  res.status(200).send( "Profile updated Succesfully" );                                    
+                                } catch (error) {
+                                  return  res.status(422).send( error.message );                                                                        
+                                }
+
 
                       } else{
                           return res.status(422).send("Profile is not updated. Try Again" );

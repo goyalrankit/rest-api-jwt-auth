@@ -37,12 +37,15 @@ routes.post('/reset-password', async ( req, res ) =>{
             userDetails.question = question,
             userDetails.answer   = answer
 
-            res.status(200).send('Password is updated. Login with new password');
-            await userDetails.save();       
+            try{
+                await userDetails.save();       
+                res.status(200).send('Password is updated. Login with new password');    
+            }catch(err)
+            { res.status(400).send(err.message);}
 
         }else
         {
-            res.status(404).send('Invalid Email or Secuirty Answer. Try Again');
+            res.status(400).send('Wrong Credentials. Try Again');
         }
     } catch (err)
     { res.send(err.message);}
