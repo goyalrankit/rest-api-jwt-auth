@@ -47,6 +47,16 @@ const schema = moongoose.Schema(
             type:Date,
             default: Date.now
         },
+        bio:{
+            type:String,
+            min:2,
+            max:100,
+        },
+        address:{
+            type:String,
+            min:5,
+            max:40
+        }
     });
 
     const User = moongoose.model('USER',schema);

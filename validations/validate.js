@@ -16,7 +16,7 @@ const validationRegister = reqBody => {
          
         phone: Joi.string()
                   .min(10)
-                  .max(11)
+                  .max(10)
                   .required(),    
         
         gender: Joi.string()
@@ -35,7 +35,13 @@ const validationRegister = reqBody => {
         answer  : Joi.string()
                      .min(3)
                      .max(20)
-                     .required()
+                     .required(),
+
+        bio     : Joi.string()
+                     .max(100),   
+
+        address : Joi.string()
+                     .max(35)   
     });  
     return schema.validate(reqBody);
 };

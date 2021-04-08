@@ -46,7 +46,7 @@ routes.post('/register', async (req,res)=>{
     
         // Saving user in Database
         if (registerUser) {
-            registerUser.save();
+          await  registerUser.save();
             res.send(registerUser);
             res.status(200).json({ message: "User Registered Succesfully" });
            } else {

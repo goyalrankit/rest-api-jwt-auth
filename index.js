@@ -8,6 +8,7 @@ const registerRoute = require('./routes/register');
 const loginRoute = require('./routes/login');
 const profileRoute = require('./routes/profile');
 const passwordRoute = require('./routes/resetPassword');
+const editRoute = require('./routes/edit-profile');
 
 
 // Helps to load the Env files
@@ -29,14 +30,15 @@ app.use(express.json());
 
 
 // Route Middleware 
-
 app.use('/restaurant/user/',registerRoute);    // Register
 
 app.use('/restaurant/user/',loginRoute);       // Login
 
 app.use('/restaurant/user/',profileRoute);     // Profile
 
-app.use('/restaurant/user/',passwordRoute);     // Reset Password
+app.use('/restaurant/user/',passwordRoute);    // Reset Password
+
+app.use('/restaurant/user/',editRoute);        // Edit Profile 
 
 // Server Call
 app.listen(5000, () =>{
