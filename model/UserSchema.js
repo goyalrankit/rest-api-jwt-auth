@@ -1,3 +1,4 @@
+const { string } = require('@hapi/joi');
 const moongoose = require('mongoose');
 
 const schema = moongoose.Schema(
@@ -56,7 +57,17 @@ const schema = moongoose.Schema(
             type:String,
             min:5,
             max:40
-        }
+        },
+        faq:[
+            {
+                question: 
+                    {
+                        type:String,
+                        required:true
+                    }
+            }
+        ]
+        
     });
 
     const User = moongoose.model('USER',schema);

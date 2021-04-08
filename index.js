@@ -9,6 +9,7 @@ const loginRoute = require('./routes/login');
 const profileRoute = require('./routes/profile');
 const passwordRoute = require('./routes/resetPassword');
 const editRoute = require('./routes/edit-profile');
+const faq = require('./routes/faq');
 
 
 // Helps to load the Env files
@@ -19,8 +20,10 @@ dotenv.config();
 mongooose.connect(
     process.env.DB_CONNECT,
     {
-         useUnifiedTopology: true,
-         useNewUrlParser: true,          
+         useUnifiedTopology : true,
+         useNewUrlParser    : true,
+         useCreateIndex     : true,
+         useFindAndModify   : false          
     },() => {    console.log('Connected to Database');
 });
 
@@ -39,6 +42,8 @@ app.use('/restaurant/user/',profileRoute);     // Profile
 app.use('/restaurant/user/',passwordRoute);    // Reset Password
 
 app.use('/restaurant/user/',editRoute);        // Edit Profile 
+
+app.use('/restaurant/user/',faq);              // FAQ 
 
 // Server Call
 app.listen(5000, () =>{

@@ -85,9 +85,21 @@ const validationPasswordReset = reqBody => {
     return schema.validate(reqBody);
 };
 
+const validationQuestion = reqBody =>{
+
+    const schema = Joi.object({
+
+        question : Joi.string()
+                      .min(6)
+                      .max(35)
+                      .required()  
+
+    });
+    return schema.validate(reqBody);
+}
 
 
 module.exports.validationRegister = validationRegister;
 module.exports.validationLogin = validationLogin;
 module.exports.validationPasswordReset = validationPasswordReset;
-
+module.exports.validationQuestion = validationQuestion;
