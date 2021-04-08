@@ -1,64 +1,56 @@
-const express = require('express');
+const express = require("express");
 const routes = express.Router();
-const middle = require('./../middleware/verifyToken');
-const User = require('./../model/UserSchema');
-const { validationQuestion } = require('./../validations/validate');
+const middle = require("./../middleware/verifyToken");
+const User = require("./../model/UserSchema");
+const FAQ = require("./../model/FAQSchema");
 
+const { validationQuestion } = require("./../validations/validate");
 
-    routes.post('/faq',middle,async(req,res)=>{
+routes.post("/faq", middle, async (req, res) => {
+  try {
+    const { _id } = req.user;
 
-        try {
-            const { _id } = req.user;
-        
-            if(_id){
+        if (_id) {
                 const { question } = req.body;
-                const queries = question;
 
-             const results =  await  User.findByIdAndUpdate({_id:_id},{ $addToSet: {faq:{question:queries}}});
+                // Fetching only name and email using user Id
+                const { name , email } = await User.findById(_id);
 
-            //    const userDetails = await User.findById(_id);
+                // Updating the User question 
+                const results = await User.findByIdAndUpdate(
+                    { _id: _id },
+                    { $addToSet: { faq: { question: question } } }
+                );
+                if (results) {
 
-            //    if(userDetails)
-            //    {
+                    // Creating a FAQ 
+                    const faqDetails =  await new FAQ(); 
 
-            //        const { error } = validationQuestion(req.body);
-            //        if(error){
-            //             return res.status(422).send(error.details[0].message);
-            //        }
+                // user name is not present    
+                
+                    faqDetails.userName = name
+                    faqDetails.userEmail = email
+                    faqDetails.question = question
+                    faqDetails.answer = ""
+                    faqDetails.status = false
+                
+                    try{
+                        faqDetails.save();
+                        return res.status(200).send("Question Posted" + results);
 
-            //        userDetails.name      =  userDetails.name,
-            //        userDetails.email     =  userDetails.email,
-            //        userDetails.phone     =  userDetails.phone,
-            //        userDetails.gender    =  userDetails.gender,
-            //        userDetails.password  =  userDetails.password,
-            //        userDetails.cpassword =  userDetails.cpassword,
-            //        userDetails.question  =  userDetails.question,
-            //        userDetails.answer    =  userDetails.answer,
-            //        userDetails.bio       =  userDetails.bio,
-            //        userDetails.address   =  userDetails.address,
-            //        userDetails.faq       =  userDetails.faq,question       
-
-                //    const results = await userDetails.save();
-                   if(results){
-                    // console.log(userDetails);
-                    return res.status(200).send('Question Posted' + results);
-
-                   }
-                   else
-                   {                       res.status(400).send(results);                   }
-
-              
-            //    }
-            }else{
-                res.status(400).send('Login Again');
-            }    
-        }
-        catch(err)
-        {
+                    } catch(err)
+                    {
+                        res.status(400).send(err.message);
+                    }               
+                } else {
+                    res.status(400).send(results);
+                }
+            } else {
+                res.status(400).send("Login Again");
+                }
+         } catch (err) {
             res.status(400).send(err.message);
-        }
-
-
-    });
+    }
+  });
 
 module.exports = routes;

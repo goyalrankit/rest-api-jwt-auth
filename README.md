@@ -62,3 +62,13 @@
     Added Bio
     Added Address
      
+#   New Model Added
+    Question asked by User will be saved User as well as in  New Collection   
+    New Collection -> FAQ 
+
+#   Schema of FAQ collection
+    UserName
+    UserEmail
+    Question
+    Answer
+    Status    
