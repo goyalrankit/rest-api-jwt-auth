@@ -4,7 +4,18 @@
     How to run the Project?
     cd rest-api-jwt-auth
     nodemon index.js
+#   Whats is in index.js?    
+    Connecting to Database
+    Calling all routes
+    Server port implementation 
 
+#   Using postman 
+    -> run project 
+    -> check console Server is working 
+
+    -> Port number : 5000
+    -> http://localhost:5000/restaurant/user/register
+    -> http://localhost:5000/restaurant/user/login
 # 
     Server Setup runs at port 5000
 # 
@@ -72,3 +83,9 @@
     Question
     Answer
     Status    
+
+#   ADMIN PANEL
+    Register ADMIN 
+    FOR ADMIN 
+    Business Number is Must
+    

@@ -1,7 +1,8 @@
 // Validation dependency
 const Joi = require('@hapi/joi');
 
-// Validation Schema for Register
+// USER VALIDATION -->
+// Validation Schema for Register User
 const validationRegister = reqBody => {
 
     const schema = Joi.object({
@@ -15,8 +16,8 @@ const validationRegister = reqBody => {
                   .email({ minDomainSegments: 2, tlds: { allow: ['com', 'net','gov','edu'] } }),
          
         phone: Joi.string()
-                  .min(10)
-                  .max(10)
+                  .length(10)
+                  .pattern(/^[0-9]+$/)
                   .required(),    
         
         gender: Joi.string()
@@ -99,7 +100,51 @@ const validationQuestion = reqBody =>{
 }
 
 
+// ADMIN PANEL 
+
+// Validation Schema for Admin
+const validationAdminRegister = reqBody => {
+
+    const schema = Joi.object({
+        name: Joi.string()
+                 .min(3)
+                 .max(30)
+                 .required(),
+        
+        email: Joi.string()
+                  .required()    
+                  .email({ minDomainSegments: 2, tlds: { allow: ['com', 'net','gov','edu'] } }),
+         
+        phone: Joi.string()
+                   .length(10)
+                   .pattern(/^[0-9]+$/)
+                  .required(),    
+        
+        gender: Joi.string()
+                   .required(),    
+    
+        password: Joi.string()
+                     .min(6)
+                     .pattern(new RegExp('^[a-zA-Z0-9]{6,30}$')),
+    
+        cpassword: Joi.ref('password'),
+        
+        business: Joi.string()
+                     .length(9)
+                     .required(),
+
+        address : Joi.string()
+                     .max(35)   
+    });  
+    return schema.validate(reqBody);
+};
+
+
+// USER
 module.exports.validationRegister = validationRegister;
 module.exports.validationLogin = validationLogin;
 module.exports.validationPasswordReset = validationPasswordReset;
 module.exports.validationQuestion = validationQuestion;
+
+// ADMIN
+module.exports.validationAdminRegister = validationAdminRegister;
