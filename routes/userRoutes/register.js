@@ -1,31 +1,30 @@
 const express = require('express');
 const routes = express.Router();
-const Admin = require('../model/AdminSchema');
-const { validationAdminRegister } = require('../validations/validate');
+const User = require('../../model/UserSchema');
+const { validationRegister } = require('../../validations/validate');
 const bcrypt = require('bcryptjs');
 
 // Register User
 
 routes.post('/register', async (req,res)=>{
 
+    const { name , email , phone, gender, password, cpassword, question, answer } = req.body;
 
-    const { name , email , phone, gender, password, cpassword, business, address } = req.body;
     console.log(req.body);
 
     // Validation check using JOI
     // This return the JSon object, so just getting error from JSON 
-        const {error} = validationAdminRegister(req.body);
-        
-            if(error){
-                return res.status(422).send( error.details[0].message);
-            }
+    const {error} = validationRegister(req.body);
+    if(error)
+    {
+        return res.status(422).send( error.details[0].message);
+    }
 
 
     // Create a new user 
     try {
         // Email already exist
-        const emailExist = await Admin.findOne( {email:email} );
-
+        const emailExist = await User.findOne( {email:email} );
         if(emailExist){
         return res.status(400).send('Email already Exist, Try registering with new Email');
         }
@@ -34,15 +33,15 @@ routes.post('/register', async (req,res)=>{
             const hashedPassword = await bcrypt.hash(password,12);
             const hashedConfirmPassword = await bcrypt.hash(cpassword,12);
 
-            const registerUser = await new Admin({
+            const registerUser = await new User({
                 name     : name,
                 email    : email,
                 phone    : phone,
                 gender   : gender,
                 password : hashedPassword,
                 cpassword: hashedConfirmPassword,
-                business : business,
-                address  : address
+                question : question,
+                answer   : answer
             });
     
         // Saving user in Database
@@ -50,7 +49,7 @@ routes.post('/register', async (req,res)=>{
           
             try {
                 registerUser.save();
-                res.status(200).send( "Admin Registered Succesfully" );
+                res.status(200).send( "User Registered Succesfully" );
             }
             catch(err){
                 return res.status(422).send(err.message);

@@ -1,10 +1,10 @@
 const express = require("express");
 const routes = express.Router();
-const middle = require("./../middleware/verifyToken");
-const User = require("./../model/UserSchema");
-const FAQ = require("./../model/FAQSchema");
+const middle = require("../../middleware/verifyToken");
+const User = require("../../model/UserSchema");
+const FAQ = require("../../model/FAQSchema");
 
-const { validationQuestion } = require("./../validations/validate");
+const { validationQuestion } = require("../../validations/validate");
 
 routes.post("/faq", middle, async (req, res) => {
   try {

@@ -2,7 +2,7 @@ const express = require('express');
 const routes = express.Router();
 
 
-const middle = require('./../middleware/verifyToken');
+const middle = require('../../middleware/verifyToken');
 
 routes.get('/profile',middle,(req,res) =>
 {

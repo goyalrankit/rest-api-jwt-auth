@@ -1,7 +1,7 @@
 const express = require('express');
 const routes = express.Router();
-const User = require('../model/UserSchema');
-const { validationPasswordReset } = require('../validations/validate');
+const User = require('./../../model/UserSchema');
+const { validationPasswordReset } = require('../../validations/validate');
 const bcrypt = require('bcryptjs');
 
 routes.post('/reset-password', async ( req, res ) =>{

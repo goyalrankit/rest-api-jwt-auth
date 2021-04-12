@@ -1,8 +1,8 @@
 const express = require('express');
 const routes = express.Router();
-const middle = require('./../middleware/verifyToken');
-const User = require('./../model/UserSchema');
-const { validationRegister } = require('./../validations/validate');
+const middle = require('../../middleware/verifyToken');
+const User = require('../../model/UserSchema');
+const { validationRegister } = require('../../validations/validate');
 const bcrypt = require('bcryptjs');
 
 

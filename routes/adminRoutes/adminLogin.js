@@ -1,7 +1,7 @@
 const express = require('express');
 const routes = express.Router();
-const User = require('../model/UserSchema');
-const { validationLogin } = require('../validations/validate');
+const Admin = require('../../model/AdminSchema');
+const { validationLogin } = require('../../validations/validate');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
@@ -22,7 +22,7 @@ try {
         }
 
 
-        const userDetails = await User.findOne({email:email});
+        const userDetails = await Admin.findOne({email:email});
         // Check If Email exist
         if(!userDetails)
         {   return res.status(400).send('Email or password are invalid'); }

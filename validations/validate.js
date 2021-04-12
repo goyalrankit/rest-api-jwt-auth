@@ -139,6 +139,24 @@ const validationAdminRegister = reqBody => {
     return schema.validate(reqBody);
 };
 
+// Validation Schema for Reset Password
+const validationAdminPasswordReset = reqBody => {
+
+    const schema = Joi.object({      
+        email: Joi.string()
+                  .required()    
+                  .email({ minDomainSegments: 2, tlds: { allow: ['com', 'net','gov','edu'] } }),
+    
+        business: Joi.string()
+                  .length(9)
+                  .required(),
+          
+        password: Joi.string()
+                     .min(6)
+                     .pattern(new RegExp('^[a-zA-Z0-9]{6,30}$'))             
+    });  
+    return schema.validate(reqBody);
+};
 
 // USER
 module.exports.validationRegister = validationRegister;
@@ -148,3 +166,4 @@ module.exports.validationQuestion = validationQuestion;
 
 // ADMIN
 module.exports.validationAdminRegister = validationAdminRegister;
+module.exports.validationAdminPasswordReset = validationAdminPasswordReset;

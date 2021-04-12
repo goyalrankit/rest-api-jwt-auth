@@ -10,22 +10,30 @@
     Server port implementation 
 
 #   Using postman 
-    -> run project 
-    -> check console Server is working 
-
+    -> run project     
     -> Port number : 5000
-    -> http://localhost:5000/restaurant/user/register
-    -> http://localhost:5000/restaurant/user/login
-# 
-    Server Setup runs at port 5000
-# 
+
+    -> check console Server is working 
+  
+ #  ADMIN ROUTES    
+   -> http://localhost:5000/restaurant/admin/register
+   -> http://localhost:5000/restaurant/admin/login
+   -> http://localhost:5000/restaurant/admin/reset-password
+
     Added the Register Route
     Added the Login Route
-# 
+#   USER ROUTES
+   -> http://localhost:5000/restaurant/user/register
+   -> http://localhost:5000/restaurant/user/login
+   -> http://localhost:5000/restaurant/user/edit-profile
+   -> http://localhost:5000/restaurant/user/reset-password
+   -> http://localhost:5000/restaurant/user/profile
+#
     Securing Password and connection using Dotenv
     Connecting to Mongo Db
 
-# 
+#   FAQ ROUTES
+   -> http://localhost:5000/restaurant/user/faq 
     Implemented the User Schema
     Name:
     Email:

@@ -4,15 +4,17 @@ const mongooose = require('mongoose');
 const dotenv = require('dotenv');
 
 // Importing Routes
-const registerRoute = require('./routes/register');
-const loginRoute = require('./routes/login');
-const profileRoute = require('./routes/profile');
-const passwordRoute = require('./routes/resetPassword');
-const editRoute = require('./routes/edit-profile');
-const faq = require('./routes/faq');
+const registerRoute = require('./routes/userRoutes/register');
+const loginRoute = require('./routes/userRoutes/login');
+const profileRoute = require('./routes/userRoutes/profile');
+const passwordRoute = require('./routes/userRoutes/resetPassword');
+const editRoute = require('./routes/userRoutes/edit-profile');
+const faq = require('./routes/faqRoute/faq');
 
 // Importing Admin Routes
-const adminRegisterRoute = require('./adminRoutes/adminRegister');
+const adminRegisterRoute = require('./routes/adminRoutes/adminRegister');
+const adminLoginRoute = require('./routes/adminRoutes/adminLogin');
+const adminPasswordRoute = require('./routes/adminRoutes/adminResetPassword');
 
 
 // Helps to load the Env files
@@ -50,6 +52,10 @@ app.use('/restaurant/user/',faq);                       // FAQ
 
 
 app.use('/restaurant/admin/',adminRegisterRoute) ;      // ADMiN Register
+
+app.use('/restaurant/admin/',adminLoginRoute);          // ADMiN Login
+
+app.use('/restaurant/admin/',adminPasswordRoute);       // ADMiN Reset Password
 
 
 // Server Call

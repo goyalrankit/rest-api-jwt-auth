@@ -1,44 +1,44 @@
 const express = require('express');
 const routes = express.Router();
-const User = require('../model/UserSchema');
-const { validationPasswordReset } = require('../validations/validate');
+const Admin = require('../../model/AdminSchema');
+const { validationAdminPasswordReset } = require('../../validations/validate');
 const bcrypt = require('bcryptjs');
 
 routes.post('/reset-password', async ( req, res ) =>{
     
-    const { email, question,answer ,password } =  req.body;
+    const { email, business ,password } =  req.body;
   
     // Validation
-    const {error} = validationPasswordReset(req.body);
+    const {error} = validationAdminPasswordReset(req.body);
         if(error)
             { return res.status(404).send(error.details[0].message);}
 
     try {        
         // Getting the Email    
-        const userDetails = await User.findOne({email:email});
+        const adminDetails = await Admin.findOne({email:email});
 
         // Email does not exist
-        if(!userDetails){
+        if(!adminDetails){
             return res.status(404).send('Invalid Credentials');
         }
 
         // Matching the Security Answer
-        if( question === userDetails.question && answer === userDetails.answer)
+        if( business === adminDetails.business)
         {
             // Hash the New password
             const hashedPassword = await bcrypt.hash(password,12);
 
-            userDetails.name     = userDetails.name,
-            userDetails.email    = email,
-            userDetails.phone    = userDetails.phone,
-            userDetails.gender   = userDetails.gender,
-            userDetails.password = hashedPassword,
-            userDetails.cpassword= hashedPassword,
-            userDetails.question = question,
-            userDetails.answer   = answer
+            adminDetails.name     = adminDetails.name,
+            adminDetails.email    = email,
+            adminDetails.phone    = adminDetails.phone,
+            adminDetails.gender   = adminDetails.gender,
+            adminDetails.password = hashedPassword,
+            adminDetails.cpassword= hashedPassword,
+            adminDetails.business = business,
+            adminDetails.address  = adminDetails.address
 
             try{
-                await userDetails.save();       
+                await adminDetails.save();       
                 res.status(200).send('Password is updated. Login with new password');    
             }catch(err)
             { res.status(400).send(err.message);}
