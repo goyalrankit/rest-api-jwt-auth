@@ -27,8 +27,8 @@
     Routes used for admin access:
     -> http://localhost:5000/restaurant/admin/register
     -> http://localhost:5000/restaurant/admin/login
-    : http://localhost:5000/restaurant/admin/reset-password
-    : http://localhost:5000/restaurant/admin/status
+    -> http://localhost:5000/restaurant/admin/reset-password
+    -> http://localhost:5000/restaurant/admin/status
 
 
 #   USER ROUTES
@@ -42,9 +42,13 @@
 
     Routes used for Users access:
    -> http://localhost:5000/restaurant/user/register
+   
    -> http://localhost:5000/restaurant/user/login
+   
    -> http://localhost:5000/restaurant/user/edit-profile
+   
    -> http://localhost:5000/restaurant/user/reset-password
+   
    -> http://localhost:5000/restaurant/user/profile
 
 #   FAQ ROUTES
