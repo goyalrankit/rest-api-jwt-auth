@@ -25,10 +25,10 @@
     [✓]  Admin can active and deactive the Users.
 
     Routes used for admin access:
-   -> http://localhost:5000/restaurant/admin/register
-   -> http://localhost:5000/restaurant/admin/login
-   -> http://localhost:5000/restaurant/admin/reset-password
-   -> http://localhost:5000/restaurant/admin/status
+    : http://localhost:5000/restaurant/admin/register
+    : http://localhost:5000/restaurant/admin/login
+    : http://localhost:5000/restaurant/admin/reset-password
+    : http://localhost:5000/restaurant/admin/status
 
 
 #   USER ROUTES
