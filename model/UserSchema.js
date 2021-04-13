@@ -66,7 +66,11 @@ const schema = moongoose.Schema(
                         required:true
                     }
             }
-        ]
+        ],
+        status:{
+            type:String,
+            default:'active'
+        }
         
     });
 

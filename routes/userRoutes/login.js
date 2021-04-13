@@ -27,10 +27,19 @@ try {
         if(!userDetails)
         {   return res.status(400).send('Email or password are invalid'); }
 
+            
+        // Check the Status of User Active
+        // Account Deactivated
+        if(userDetails.status != 'active')    
+        {  return res.status(400).send('Your account is deactivated. Try contacting to Admin.'); }
+
+
         // Compare Password if email exist
         const validatePass =   await bcrypt.compare(password,userDetails.password);
         if(!validatePass){
                 return res.status(400).send('Email or password does not match');    }
+
+
 
         // Create and assign a new Token
         const newToken = await jwt.sign({ _id:userDetails._id},process.env.SECRET_TOKEN);

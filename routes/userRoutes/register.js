@@ -8,7 +8,7 @@ const bcrypt = require('bcryptjs');
 
 routes.post('/register', async (req,res)=>{
 
-    const { name , email , phone, gender, password, cpassword, question, answer } = req.body;
+    const { name , email , phone, gender, password, cpassword, question, answer  } = req.body;
 
     console.log(req.body);
 

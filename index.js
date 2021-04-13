@@ -15,7 +15,7 @@ const faq = require('./routes/faqRoute/faq');
 const adminRegisterRoute = require('./routes/adminRoutes/adminRegister');
 const adminLoginRoute = require('./routes/adminRoutes/adminLogin');
 const adminPasswordRoute = require('./routes/adminRoutes/adminResetPassword');
-
+const adminStatusRoute  = require('./routes/adminRoutes/adminUserStatus');
 
 // Helps to load the Env files
 dotenv.config();
@@ -57,6 +57,7 @@ app.use('/restaurant/admin/',adminLoginRoute);          // ADMiN Login
 
 app.use('/restaurant/admin/',adminPasswordRoute);       // ADMiN Reset Password
 
+app.use('/restaurant/admin/',adminStatusRoute);       // ADMiN Status
 
 // Server Call
 app.listen(5000, () =>{
