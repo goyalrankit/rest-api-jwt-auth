@@ -1,6 +1,6 @@
 # React Client/Server Project
 
-#   How to run the Project?
+#  💻 How to run the Project?
     cd rest-api-jwt-auth/server
     nodemon index.js
     or
