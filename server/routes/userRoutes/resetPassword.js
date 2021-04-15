@@ -11,7 +11,7 @@ routes.post('/reset-password', async ( req, res ) =>{
     // Validation
     const {error} = validationPasswordReset(req.body);
         if(error)
-            { return res.status(404).send(error.details[0].message);}
+            { return res.status(404).json({message:error.details[0].message});}
 
     try {        
         // Getting the Email    
@@ -19,7 +19,7 @@ routes.post('/reset-password', async ( req, res ) =>{
 
         // Email does not exist
         if(!userDetails){
-            return res.status(404).send('Invalid Credentials');
+            return res.status(404).json({message:'Wrong Credentials'});
         }
 
         // Matching the Security Answer
@@ -39,16 +39,16 @@ routes.post('/reset-password', async ( req, res ) =>{
 
             try{
                 await userDetails.save();       
-                res.status(200).send('Password is updated. Login with new password');    
+                res.status(200).json({message:'Password is updated. Login with new password'});    
             }catch(err)
-            { res.status(400).send(err.message);}
+            { res.status(400).json({message:err.message});}
 
         }else
         {
-            res.status(400).send('Wrong Credentials. Try Again');
+            res.status(400).json({message:'Wrong Credentials. Try Again'});
         }
     } catch (err)
-    { res.send(err.message);}
+    { res.json({message:err.message});}
 });
 
 

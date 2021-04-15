@@ -17,7 +17,7 @@ routes.post('/register', async (req,res)=>{
     const {error} = validationRegister(req.body);
     if(error)
     {
-        return res.status(422).send( error.details[0].message);
+        return res.status(422).json({message:error.details[0].message});
     }
 
 
@@ -26,7 +26,7 @@ routes.post('/register', async (req,res)=>{
         // Email already exist
         const emailExist = await User.findOne( {email:email} );
         if(emailExist){
-        return res.status(400).send('Email already Exist, Try registering with new Email');
+        return res.status(400).json({message:'Email already Exist, Try registering with new Email'});
         }
 
         // Hash Password 
@@ -49,16 +49,16 @@ routes.post('/register', async (req,res)=>{
           
             try {
                 registerUser.save();
-                res.status(200).send( "User Registered Succesfully" );
+                res.status(200).json({message: "User Registered Succesfully"} );
             }
             catch(err){
-                return res.status(422).send(err.message);
+                return res.status(422).json({message:err.message});
             }
            } else {
-            return res.status(422).json({ error: "Not Registered" });
+            return res.status(422).json({message: "Not Registered" });
             }
      } catch (error){ 
-            res.status(400).send(console.log(error));
+            res.status(400).json({message:console.log(error)});
         }
 });
 

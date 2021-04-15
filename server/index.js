@@ -3,6 +3,8 @@ const app = express();
 const mongooose = require('mongoose');
 const dotenv = require('dotenv');
 
+const cores = require('cors');
+
 // Importing Routes
 const registerRoute = require('./routes/userRoutes/register');
 const loginRoute = require('./routes/userRoutes/login');
@@ -36,6 +38,8 @@ mongooose.connect(
 // Middleware
 app.use(express.json());
 
+// Cores
+app.use(cores());
 
 // Route Middleware 
 app.use('/restaurant/user/',registerRoute);             // Register
